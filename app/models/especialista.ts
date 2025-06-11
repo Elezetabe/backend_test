@@ -14,6 +14,9 @@ export default class Especialista extends BaseModel {
   @column()
   declare registro_profesional: number
 
+  @column()
+  declare dias: string
+
   @column({
     serialize: (value) => {
       if (typeof value === 'string') {
@@ -28,7 +31,7 @@ export default class Especialista extends BaseModel {
       return value
     },
   })
-  declare dias_horarios: any
+  declare horarios: any
 
   @column()
   declare activo: boolean

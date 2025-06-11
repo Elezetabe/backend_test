@@ -20,7 +20,15 @@ export default class EspecialistasController {
    */
   async store({ request }: HttpContext) {
     try {
-      const data = request.only(['nombre_completo', 'especialidad', 'registro_profesional', 'dias_horarios', 'activo'])
+      // Cambia dias_horarios por dias y horario
+      const data = request.only([
+        'nombre_completo',
+        'especialidad',
+        'registro_profesional',
+        'dias',
+        'horarios',
+        'activo'
+      ])
       const especialista = await Especialista.create(data)
       return especialista
     } catch (error) {
@@ -48,7 +56,15 @@ export default class EspecialistasController {
   async update({ params, request }: HttpContext) {
     try {
       const especialista = await Especialista.findOrFail(params.id)
-      const data = request.only(['nombre_completo', 'especialidad', 'registro_profesional', 'dias_horarios', 'activo'])
+      // Cambia dias_horarios por dias y horario
+      const data = request.only([
+        'nombre_completo',
+        'especialidad',
+        'registro_profesional',
+        'dias',
+        'horarios',
+        'activo'
+      ])
       especialista.merge(data)
       await especialista.save()
       return especialista
