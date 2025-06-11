@@ -10,7 +10,8 @@ export default class extends BaseSchema {
       table.string('nombre_completo').notNullable()
       table.string('especialidad').notNullable()
       table.integer('registro_profesional').notNullable().unique()
-
+      table.json('dias_horarios').notNullable()
+      table.boolean('activo').notNullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })
