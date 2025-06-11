@@ -6,13 +6,35 @@ export default class Especialista extends BaseModel {
   declare id: number
 
   @column()
-  declare nombreCompleto: string
+  declare nombre_completo: string
 
   @column()
   declare especialidad: string
 
   @column()
-  declare registroProfesional: number
+  declare registro_profesional: number
+
+  @column()
+  declare dias: string
+
+  @column({
+    serialize: (value) => {
+      if (typeof value === 'string') {
+        try { return JSON.parse(value) } catch { return value }
+      }
+      return value
+    },
+    prepare: (value) => {
+      if (typeof value === 'object') {
+        return JSON.stringify(value)
+      }
+      return value
+    },
+  })
+  declare horarios: any
+
+  @column()
+  declare activo: boolean
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
